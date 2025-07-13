@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Gradasi biru laut ini akan tetap ada sebagai fallback atau lapisan */
+    background: linear-gradient(135deg, #00c6fb, #005bea);
+    
+    /* UBAH BARIS INI: Gunakan nama file gambar lokalmu */
+    background-image: url('hewan.jpeg'); /* GANTI DENGAN NAMA FILE GAMBAR LAUTMU! */
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff; /* Warna teks putih untuk kontras */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Overlay gelap untuk membuat teks lebih jelas */
+    z-index: -1;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.1); /* Background lebih transparan */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Garis tepi semi-transparan */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Bayangan lebih tebal */
+    width: 90%;
+    max-width: 950px;
+    margin: 30px auto;
+    backdrop-filter: blur(10px); /* Efek blur yang lebih kuat */
+    -webkit-backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out; /* Animasi masuk */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-family: 'Pacifico', cursive; /* Font yang lebih artistik */
+    text-align: center;
+    color: #a8dadc; /* Warna biru muda yang menawan */
+    margin-bottom: 30px;
+    font-size: 3.5em;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Bayangan teks lebih menonjol */
+    line-height: 1.2;
+}
+
+h1 span {
+    font-size: 0.7em;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #e0f2f7;
+    margin-top: 10px;
+}
+
+h2 {
+    color: #8edcff; /* Warna biru cerah */
+    border-bottom: 2px solid #8edcff;
+    padding-bottom: 10px;
+    margin-top: 45px;
+    margin-bottom: 25px;
+    font-size: 2em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.day-schedule {
+    list-style: none;
+    padding: 0;
+}
+
+.day-schedule li {
+    background-color: rgba(255, 255, 255, 0.15); /* Item list lebih transparan */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 18px;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    position: relative; /* Untuk elemen dekorasi */
+    overflow: hidden; /* Untuk efek hover */
+}
+
+.day-schedule li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(173, 216, 230, 0.2), rgba(0, 191, 255, 0.2));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.day-schedule li:hover::before {
+    transform: translateX(0%);
+}
+
+.day-schedule li:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.time {
+    font-weight: 700; /* Lebih tebal */
+    color: #ffe082; /* Warna emas/kuning cerah */
+    min-width: 130px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    font-size: 1.1em;
+}
+
+.subject-teacher {
+    flex-grow: 1;
+    margin-left: 20px;
+    color: #e0f7fa; /* Warna putih kebiruan */
+    font-size: 1.05em;
+    font-weight: 600;
+}
+
+.teacher-name {
+    font-style: italic;
+    color: #bbdefb; /* Warna biru muda */
+    font-weight: 400;
+    display: block; /* Agar nama guru di baris baru */
+    font-size: 0.9em;
+    margin-top: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+        width: 95%;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    .day-schedule li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+    .time {
+        margin-bottom: 8px;
+        font-size: 1em;
+    }
+    .subject-teacher {
+        margin-left: 0;
+        font-size: 1em;
+    }
+    .teacher-name {
+        margin-top: 5px;
+        font-size: 0.85em;
+    }
+}
