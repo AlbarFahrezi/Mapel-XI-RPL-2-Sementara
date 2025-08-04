@@ -1,62 +1,52 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const jadwalData = {
-        senin: [
-            { time: '07.00 - 09.15', name: 'Ela Nurlela', title: 'S.Pd' },
-            { time: '09.15 - 11.00', name: 'Retno Novia A.', title: 'S.Kom' },
-            { time: '11.45 - 13.15', name: 'Ai Sa\'adatuddaroin', title: 'S.Pd' },
-            { time: '13.15 - 15.30', name: 'Iin Solihin', title: 'M.Pd' }
+document.addEventListener('DOMContentLoaded', () => {
+    const scheduleData = {
+        'SENIN': [
+            { guru: 'Taufik Dzikri P., S.Pd', waktu: '07.00-10.00', mapel: 'PRODUKTIF' },
+            { guru: 'Gelar Laksana C., S.Pd', waktu: '10.15-11.45', mapel: 'PJOK' },
+            { guru: 'Ai Sa\'adatuddaroin, S.Pd', waktu: '12.30-14.00', mapel: 'B.INGGRIS' },
+            { guru: 'Lia Yuliasari, S.Pd', waktu: '14.00-15.30', mapel: 'PPKN' }
         ],
-        selasa: [
-            { time: '07.00 - 09.15', name: 'Elis Waliah', title: 'S.Ag' },
-            { time: '09.15 - 11.45', name: 'Keresna Bayu W.K.', title: 'S.Pd' },
-            { time: '12.30 - 15.30', name: 'Taufik Dzikri P.', title: 'S.Pd' }
+        'SELASA': [
+            { guru: 'Elis Waliah, S.Ag', waktu: '07.00-09.15', mapel: 'AGAMA' },
+            { guru: 'Ela Nurlela, S.Pd', waktu: '09.15-11.45', mapel: 'MTK' },
+            { guru: 'Dede Iskandar, S.T', waktu: '12.30-15.30', mapel: 'PRODUKTIF' }
         ],
-        rabu: [
-            { time: '07.00 - 08.30', name: 'Dian Maelani', title: 'S.Pd' },
-            { time: '08.30 - 10.00', name: 'Buyung Supriadi', title: 'S.S' },
-            { time: '10.15 - 11.45', name: 'Dede Iskandar', title: 'S.T' },
-            { time: '14.00 - 15.30', name: 'Ai Sa\'adatuddaroin', title: 'S.Pd' }
+        'RABU': [
+            { guru: 'Retno Novia A., S.Kom', waktu: '07.00-11.45', mapel: 'PRODUKTIF' },
+            { guru: 'Septi Mayang S., S.Pd', waktu: '12.30-14.00', mapel: 'BK' },
+            { guru: 'Ai Sa\'adatuddaroin', waktu: '14.00-15.30', mapel: 'B.INGGRIS' }
         ],
-        kamis: [
-            { time: '07.00 - 08.30', name: 'Septo Mayang Saputri', title: 'S.Pd' },
-            { time: '08.30 - 10.00', name: 'Keresna Bayu K.', title: 'S.Pd' },
-            { time: '10.15 - 11.45', name: 'Gelar Laksana C.', title: 'S.Pd' },
-            { time: '12.30 - 15.30', name: 'Taufik Dzikri P.', title: 'S.Pd' }
+        'KAMIS': [
+            { guru: 'Dian Maelani, S.Pd', waktu: '07.00-08.30', mapel: 'MPKK' },
+            { guru: 'Taufik Dzikri P., S.Pd', waktu: '08.30-11.45', mapel: 'PRODUKTIF' },
+            { guru: 'Cahya Nurhaeni, S.Pd', waktu: '12.30-14.00', mapel: 'SEJARAH' },
+            { guru: 'Keresna Bayu W.K., S.Pd', waktu: '14.00-15.30', mapel: 'PKK/KWU' }
         ],
-        jumat: [
-            { time: '07.45 - 10.45', name: 'Retno Novia A.', title: 'S.Kom' },
-            { time: '10.45 - 13.30', name: 'Cahya Nurhaeni', title: 'S.Pd' },
-            { time: '13.30 - 15.00', name: 'Lia Yuliasari', title: 'S.Pd' }
+        'JUMAT': [
+            { guru: 'Buyung Supriadi, S.S', waktu: '07.45-09.15', mapel: 'B.JEPANG' },
+            { guru: 'Iin Solihin', waktu: '09.15-11.30', mapel: 'B.INDONESIA' },
+            { guru: 'Keresna Bayu W.K., S.Pd', waktu: '12.45-15.00', mapel: 'KWU' }
         ]
     };
 
-    function loadSchedule() {
-        for (const day in jadwalData) {
-            const ulElement = document.getElementById(`${day}-schedule`);
-            if (ulElement) {
-                jadwalData[day].forEach(lesson => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <span class="time">${lesson.time}</span>
-                        <span class="subject-teacher">${lesson.name}, <span class="teacher-name">${lesson.title}</span></span>
-                    `;
-                    li.addEventListener('click', function() {
-                        const messages = [
-                            `Gelombang ilmu datang dari ${lesson.name} di jam ${lesson.time}! Siap-siap menimba harta karun pengetahuan!`,
-                            `Waktunya menyelam dalam materi bareng ${lesson.name} di jam ${lesson.time}! Jangan sampai karam ya!`,
-                            `Alarm berbunyi! Saatnya petualangan bareng ${lesson.name}. Semoga otakmu tidak jadi ubur-ubur!`,
-                            `Lautnya tenang, otak kita nge-GAS bareng ${lesson.name} di jam ${lesson.time}. Semangat!`,
-                            `Ada pesan dari dasar laut: ${lesson.name} menunggumu! Jangan telat, nanti jadi fosil!`,
-                            `Duhai para pelaut ilmu, ${lesson.name} akan memandu kita di samudera pelajaran. Jangan sampai tersesat!`
-                        ];
-                        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-                        alert(randomMessage);
-                    });
-                    ulElement.appendChild(li);
-                });
-            }
-        }
-    }
+    const scheduleContainer = document.querySelector('.schedule-grid');
 
-    loadSchedule();
+    for (const day in scheduleData) {
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('day');
+        dayDiv.innerHTML = `<h2>${day}</h2>`;
+        
+        scheduleData[day].forEach(lesson => {
+            const lessonDiv = document.createElement('div');
+            lessonDiv.classList.add('lesson');
+            lessonDiv.innerHTML = `
+                <h3>${lesson.guru}</h3>
+                <p class="time">${lesson.waktu}</p>
+                <span class="subject-tag">${lesson.mapel}</span>
+            `;
+            dayDiv.appendChild(lessonDiv);
+        });
+        
+        scheduleContainer.appendChild(dayDiv);
+    }
 });
